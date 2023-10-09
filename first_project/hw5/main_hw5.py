@@ -1,7 +1,7 @@
 from cities_hw5 import cities
 
 
-# функция для получения множества из значений словаря по ключам
+# функция для получения множества из значений словаря по заданному ключу
 def dictionary_to_set(dictionary_input: dict, dict_key: str) -> set[str]:
     output_set = set()
     for key in dictionary_input:
@@ -9,30 +9,27 @@ def dictionary_to_set(dictionary_input: dict, dict_key: str) -> set[str]:
     return output_set
 
 
-# получаем названия городов из импортированного списка словарей
-cities_db = dictionary_to_set(cities, "name")
-
-print(cities_db)
-
-
-user_input: str = input('Ведите название города, \nбез Ь, Ы, Й на конце: ').lower()
-
-
 # проверяем полученное название первого города, от которого будем отталкиваться в основном цикле
-def initial_input_check(input_argument: str):
-    if input_argument == 'стоп':
+def initial_input_check(input_argument: str, stop_word: str, source_db: set):
+    if input_argument == stop_word:
         print('Мы еще не начали, а вы уже сдались!')
         exit()
     # проверяем чтобы слова не заканчивались на 'ь' 'ы' 'й'
     elif input_argument[-1] == 'ь' or input_argument[-1] == 'ы' or input_argument[-1] == 'й':
         user_input_argument = input('Введите другое название: ').lower()
     else:
-        if input_argument in cities_db:  # проверяем наличие введенного названия во множестве
-            cities_db.remove(input_argument)  # удаляем введенное название из множества
+        if input_argument in source_db:  # проверяем наличие введенного названия во множестве
+            source_db.remove(input_argument)  # удаляем введенное название из множества
             print(f'Мой вариант на {input_argument[-1].upper()}')
 
 
-initial_input_check(user_input)
+# получаем названия городов из импортированного списка словарей
+cities_db = dictionary_to_set(cities, "name")
+print(cities_db)
+
+user_input: str = input('Ведите название города, \nбез Ь, Ы, Й на конце: ').lower()
+
+initial_input_check(user_input, 'стоп', cities_db)
 
 # основной цикл игры
 for city in list(cities_db):
