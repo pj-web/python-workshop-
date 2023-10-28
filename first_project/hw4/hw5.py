@@ -15,17 +15,20 @@ print(cities_to_set())
 
 user_input = input('Ведите название города, \nбез Ь, Ы, Й на конце: ').lower()
 
+
 # проверяем полученное название первого города, от которого будем отталкиваться в основном цикле
-if user_input == 'стоп':
-    print('Мы еще не начали, а вы уже сдались!')
-    exit()
-# проверяем чтобы слова не заканчивались на 'ь' 'ы' 'й'
-elif user_input[-1] == 'ь' or user_input[-1] == 'ы' or user_input[-1] == 'й':
-    user_input = input('Введите другое название: ').lower()
-else:
-    if user_input in cities_to_set():  # проверяем наличие введенного названия во множестве
-        cities_to_set().remove(user_input)  # удаляем введенное название из множества
-        print(f'Мой вариант на {user_input[-1].upper()}')
+def first_input_check(user_input):
+    if user_input == 'стоп':
+        print('Мы еще не начали, а вы уже сдались!')
+        exit()
+    # проверяем чтобы слова не заканчивались на 'ь' 'ы' 'й'
+    elif user_input[-1] == 'ь' or user_input[-1] == 'ы' or user_input[-1] == 'й':
+        user_input = input('Введите другое название: ').lower()
+    else:
+        if user_input in cities_to_set():  # проверяем наличие введенного названия во множестве
+            cities_to_set().remove(user_input)  # удаляем введенное название из множества
+            print(f'Мой вариант на {user_input[-1].upper()}')
+
 
 # основной цикл игры
 for city in list(cities_to_set()):

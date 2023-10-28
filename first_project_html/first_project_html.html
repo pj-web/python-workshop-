@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Домашка №6</title>
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body {
+      background-color: antiquewhite;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .main-container {
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 40px;
+    }
+    .columns {
+      display: flex;
+    }
+    .column-one, .column-two {
+      width: 50%;
+      margin: 10px;
+    }
+
+    .section-form {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .section-form form {
+      margin: 10px auto;
+    }
+    .section-form form label {
+      display: block;
+      text-align: center;
+      font-weight: 700;
+    }
+    .section-form form input {
+      display: block;
+      min-width: 80%;
+      margin: 10px auto 20px;
+      padding: 16px;
+      border: none;
+      transition: .8s all 0s;
+      font-size: 18px;
+    }
+    
+    .section-form form button {
+      display: block;
+      padding: 16px 60px;
+      margin: 20px auto;
+      cursor: pointer;
+      border: none;
+      background-color: #ffbf00;
+      font-size: 18px;
+      transition: .8s all 0s;
+    }
+    .section-form form input:focus-visible {
+      outline: none;
+    }
+    .section-form form input:hover {
+      box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);
+      -webkit-box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);
+      -moz-box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);  
+    }
+    .section-form form button:hover {
+      background-color: #ffdd75;
+      font-size: 18px;
+      box-shadow: #b2b2b2;
+      box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);
+      -webkit-box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);
+      -moz-box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);  
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+      border-collapse: collapse;
+      
+    }
+    table th, table td {
+      border: 1px solid #b2b2b2;  
+      padding: 8px 12px; 
+      text-align: left; 
+    }
+
+    table th {
+      font-weight: bold; 
+      background-color: #f5f5f5; 
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f9f9f9; 
+    }
+
+    .experiment-content {
+      width: 100%;
+      margin: 40px 0 0;
+      height: 50vh;
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+
+    }
+    .experiment-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 50%;
+      min-height: 50%;
+      transform: skew(-5deg,5deg);
+      box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);
+      -webkit-box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);
+      -moz-box-shadow: 11px 10px 16px -5px rgba(0,0,0,0.35);  
+      transition: .8s all 0s;
+    }
+    .experiment-box:hover {
+      transform: skew(0deg,0deg);
+      cursor: pointer;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;  
+    }
+
+    .experiment-box p {
+      font-size: 0;
+      transition: .8s all 0s;
+    }
+    .experiment-box p span {
+      font-size: 0;
+      transition: .8s all 0s;
+    }
+    .experiment-box:hover > p {
+      font-size: 16px;
+      color: #fff;
+      opacity: .6;
+    }
+    .experiment-box:hover > p span {
+      font-size: 36px;
+    }
+
+    .experiment-box:nth-child(1) {
+      background-color:#137200;
+    }
+    .experiment-box:nth-child(2) {
+      background-color:#00d9ff;
+    }
+    .experiment-box:nth-child(3) {
+      background-color:#006aff;
+    }
+    .experiment-box:nth-child(4) {
+      background-color:#72005d;
+    }
+    
+    @media (max-width: 480px) {
+      .main-container {
+      padding: 0 10px;
+    }
+      .columns {
+        display: block;
+      }
+      .column-one, .column-two {
+      width: 100%;
+      margin: 0 0 80px;
+    }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>Домашка №6</h1>
+    <div class="columns">
+      <div class="column-one">
+        <section>
+          <h2>Зачем нужна автоматизация браузера</h2>
+          <p><b>Сбор данных</b>: Автоматические скрипты могут обходить веб-сайты, собирать информацию о продуктах, ценах, оценках пользователей и других данных, которые могут быть важны в affiliate маркетинге. Это позволяет быстро анализировать рынок и искать наиболее выгодные предложения.</p>
+          <p><b>Создание контента</b>: С помощью автоматизации можно генерировать контент, например, описания товаров, обзоры, статьи и даже автоматически публиковать их на сайтах или в социальных сетях. Это упрощает процесс создания информации для продвижения продуктов.</p>
+          <p><b>Мониторинг конкурентов</b>: Скрипты могут следить за действиями конкурентов, отслеживать изменения на их сайтах, ценообразование и акции. Это помогает быть в курсе текущей ситуации на рынке и адаптировать свои стратегии маркетинга.</p>
+          <p><b>Автоматическая публикация</b>: Скрипты могут автоматически публиковать партнерские ссылки и рекламные материалы на различных площадках, блогах, форумах и в социальных сетях. Это экономит время и позволяет быстрее расширить свою аудиторию.</p>
+        </section>
+        <section>
+          <h2>Что  хочу сделать после освоения автоматизации</h2>
+          <ul>
+            <li><b>Автоматизация рутины</b>: Я смогу автоматизировать повседневные задачи, такие как регистрация на сайтах, вход в аккаунты, заполнение форм, обработка данных, резервное копирование файлов, отправка электронных писем.</li>
+            <li><b>Эффективное управление информацией</b>: Я смогу автоматизировать сбор и обработку данных с веб-сайтов, чтобы получать актуальную информацию для анализа или мониторинга, например, цен на товары, новости, или данные о конкурентах.</li>
+            <li><b>Создание собственных инструментов и ботов</b>: Я смогу разрабатывать собственные автоматизированные инструменты и боты для выполнения специфических задач, связанных с affiliate-маркетингом или делать заказы на фрилансе, чтобы прокачивать навики владения Python.</li>
+          </ul>
+        </section>
+        <section class="section-form">
+          <form>
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="login">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">Вход</button>
+          </form>
+        </section>
+      </div>
+      <div class="column-two">
+        <h2>CSS-селекторы и их описания</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Селектор</th>
+              <th>Пример</th>
+              <th>Руководство</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Селектор по типу</td>
+              <td><code>h1 { }</code></td>
+              <td>Селектор по типу</td>
+            </tr>
+            <tr>
+              <td>Универсальный селектор</td>
+              <td><code>* { }</code></td>
+              <td>Универсальный селектор</a></td>
+            </tr>
+            <tr>
+              <td>Селектор класса</td>
+              <td><code>.box { }</code></td>
+              <td>Селекторы классов</td>
+            </tr>
+            <tr>
+              <td>Селектор ID</td>
+              <td><code>#unique { }</code></td>
+              <td>Селекторы по ID</td>
+            </tr>
+            <tr>
+              <td>Селектор атрибутов</td>
+              <td><code>a[title] { }</code></td>
+              <td>Селекторы атрибутов</td>
+            </tr>
+            <tr>
+              <td>Селектор псевдоклассов</td>
+              <td><code>p:first-child { }</code></td>
+              <td>Псевдоклассы</td>
+            </tr>
+            <tr>
+              <td>Селектор псевдоэлементов</td>
+              <td><code>p::first-line { }</code></td>
+              <td>Псевдоэлементы</td>
+            </tr>
+            <tr>
+              <td>Селектор потомков</td>
+              <td><code>article p</code></td>
+              <td>Селектор потомков</td>
+            </tr>
+            <tr>
+              <td>Селектор дочерних элементов</td>
+              <td><code>article &gt; p</code></td>
+              <td>Селектор дочерних элементов</td>
+            </tr>
+            <tr>
+              <td>Смежные селекторы</td>
+              <td><code>h1 + p</code></td>
+              <td>Смежные селекторы</td>
+            </tr>
+            <tr>
+              <td>Селектор братских элементов</td>
+              <td><code>h1 ~ p</code></td>
+              <td>Селектор братских элементов</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="experiment">
+          <h2>Экспериментальный div</h2>
+          <div class="experiment-content">
+            <div class="experiment-box">
+              <p>
+                Тут появляется секретная надпись<br> <span>&#128512;</span>	
+              </p>
+            </div>
+            <div class="experiment-box">
+              <p>
+                Тут появляется секретная надпись<br> <span>&#128512;</span>
+              </p>
+            </div>
+            <div class="experiment-box">
+              <p>
+                Тут появляется секретная надпись<br> <span>&#128512;</span>
+              </p>
+            </div>
+            <div class="experiment-box">
+              <p>
+                Тут появляется секретная надпись<br> <span>&#128512;</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
