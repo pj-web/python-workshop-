@@ -4,7 +4,7 @@ from selenium import webdriver
 
 URL = 'http://www.google.com'
 
-options = webdriver.ChromeOptions()
+options: webdriver.ChromeOptions = webdriver.ChromeOptions()
 
 # options.add_argument("--window-size=1920,1080")  # window size
 options.add_argument("--start-maximized")  # развернуть на весь экран
