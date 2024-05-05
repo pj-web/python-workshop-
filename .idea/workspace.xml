@@ -48,7 +48,7 @@
       <recent name="$PROJECT_DIR$/first_project/hw4" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.hw5">
+  <component name="RunManager">
     <configuration name="hw5" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="python-workshop-" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -78,7 +78,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.11" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/first_project" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
