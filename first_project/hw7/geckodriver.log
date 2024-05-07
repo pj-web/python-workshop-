@@ -1,0 +1,9 @@
+1715094253936	geckodriver	INFO	Listening on 127.0.0.1:57767
+1715094254125	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/App ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/w8/fb9ml5l527dg98spypm5h8280000gn/T/rust_mozprofiles7Dkyq"
+2024-05-07 19:04:14.390 firefox[7895:227095] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
+2024-05-07 19:04:14.702 firefox[7898:227170] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
+2024-05-07 19:04:24.032 firefox[7898:227170] AuthorizationCopyRights failed! NSOSStatusErrorDomain / -60006
+2024-05-07 19:04:24.277 firefox[7914:227427] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
+WebDriver BiDi listening on ws://127.0.0.1:57768
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+DevTools listening on ws://127.0.0.1:57768/devtools/browser/72234a32-2f21-4921-af22-53e12934553f
