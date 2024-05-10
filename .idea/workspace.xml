@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a358e411-0e53-4354-a2e8-cf2184505c81" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/first_project/hw7/hw8.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/python-workshop-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python-workshop-.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_project/hw7/hw7.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/hw7/hw7.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_project/les21.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/les21.py" afterDir="false" />
-    </list>
+    <list default="true" id="a358e411-0e53-4354-a2e8-cf2184505c81" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +47,7 @@
       <recent name="$PROJECT_DIR$/first_project/hw4" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.les21">
     <configuration name="hw5" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="python-workshop-" />
       <option name="INTERPRETER_OPTIONS" value="" />
