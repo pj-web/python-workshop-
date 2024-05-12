@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a358e411-0e53-4354-a2e8-cf2184505c81" name="Changes" comment="" />
+=======
+    <list default="true" id="a358e411-0e53-4354-a2e8-cf2184505c81" name="Changes" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/first_project/hw7/hw8.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/python-workshop-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python-workshop-.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_project/hw7/hw7.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/hw7/hw7.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_project/les21.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/les21.py" afterDir="false" />
+>>>>>>> 91d76a69653b7ecdfc1898a94aa9f9a17cef3e87
+    </list>
+>>>>>>> 658158d6a2a87883731e4fc029297d013de34d77
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
