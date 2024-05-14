@@ -12,7 +12,7 @@ from selenium import webdriver  # Импорт webdriver.
 from selenium.webdriver.common.by import By  # Инструмент By.
 from selenium.common.exceptions import NoSuchElementException  # Исключение NoSuchElementException
 from selenium.webdriver.remote.webelement import WebElement
-from tabulate import tabulate
+# from tabulate import tabulate
 
 URL: str = 'http://books.toscrape.com/catalogue/page-1.html'
 
@@ -97,17 +97,14 @@ def write_to_json(data: List[Dict[str, str]]) -> None:
         json.dump(data, file, ensure_ascii=False, indent=4)
 
 
-from typing import List, Dict
-from tabulate import tabulate
-
-def get_tabulate_table_from_list_dict(data: List[Dict[str, str]], colwidth: int = 100) -> str:
-    """
-    Получение таблицы Tabulate из списка словарей
-    :param data: List[Dict[str, str]]
-    :param colwidth: int (ширина столбца по умолчанию)
-    :return: str
-    """
-    return tabulate(data, headers='keys', tablefmt='github', colwidth=colwidth)
+# def get_tabulate_table_from_list_dict(data: List[Dict[str, str]], colwidth: int = 100) -> str:
+#     """
+#     Получение таблицы Tabulate из списка словарей
+#     :param data: List[Dict[str, str]]
+#     :param colwidth: int (ширина столбца по умолчанию)
+#     :return: str
+#     """
+#     return tabulate(data, headers='keys', tablefmt='github', colwidth=colwidth)
 
 
 def main():
@@ -143,7 +140,7 @@ def main():
     driver.close()
 
     # Выдаем таблицу в консоль
-    print(get_tabulate_table_from_list_dict(data))
+    print(data)
 
     # Записываем данные в json
     write_to_json(data)
