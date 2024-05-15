@@ -1,3 +1,4 @@
+# Ссылка на скриншот https://drive.google.com/file/d/1Cuby8Ne8vuQWTDK3cn21P46qVu7zidsL/view?usp=share_link
 from selenium import webdriver  # Импорт webdriver
 from selenium.webdriver.common.by import By  # Инструмент By.
 from selenium.webdriver.remote.webelement import WebElement
@@ -31,9 +32,9 @@ driver: webdriver.Chrome = get_driver(WEB_DRIVER_OPTIONS)
 
 
 # 1. Функция для нахождения всех карточек на одной странице.
-# Аргумент функции - имя CSS класса, по умолчанию 'product_pod'
 def get_all_cards(driver: webdriver.Chrome):
-    return driver.find_elements(By.CLASS_NAME,  'product_pod')
+    all_cards = driver.find_elements(By.CLASS_NAME,  'product_pod')
+    return all_cards
 
 
 # 2. Функция для извлечения данных из одной карточки, номер карточки вводит пользователь.
@@ -59,6 +60,34 @@ def get_data_from_card(input_card: WebElement):
     }
 
 
+# 3. Функция для извлечения данных со всех карточек на одной странице.
+def get_data_from_cards(input_cards: List[WebElement]):
+
+    result: List[Dict[str, str]] = []
+
+    # Получаем содержимое каждой карточки на одной странице
+    for card in input_cards:
+        title: str = card.find_element(By.CSS_SELECTOR, 'h3 a').get_attribute('title')
+        url: str = card.find_element(By.CSS_SELECTOR, 'h3 a').get_attribute('href')
+        img_url: str = card.find_element(By.CSS_SELECTOR, 'img').get_attribute('src')
+        price: str = card.find_element(By.CSS_SELECTOR, '.price_color').text
+
+        # Рейтинг лежит в p.star-rating (Классы One Two Three Four Five)
+        rating_element: WebElement = card.find_element(By.CSS_SELECTOR, 'p.star-rating')
+        # Достаем классы. Последний - это рейтинг
+        rating: str = rating_element.get_attribute('class').split(' ')[-1]
+
+        result.append({
+            'title': rf"{title}",
+            'url': rf"{url}",
+            'img_url': rf"{img_url}",
+            'price': rf"{price}",
+            'rating': rf"{rating}"
+        })
+    print(f'Сперва содержимое одной страницы:')
+    pprint(result)
+
+
 # 4. Функция для определения количества страниц на сайте.
 def get_page_count(driver: webdriver.Chrome) -> int:
 
@@ -69,35 +98,9 @@ def get_page_count(driver: webdriver.Chrome) -> int:
     return last_page_number
 
 
-# 3. Функция для извлечения данных со всех карточек на одной странице.
-# def get_data_from_cards(input_cards: List[WebElement]):
-#     result: List[Dict[str, str]] = []
-#
-#     for card in input_cards:
-#         title: str = card.find_element(By.CSS_SELECTOR, 'h3 a').get_attribute('title')
-#         url: str = card.find_element(By.CSS_SELECTOR, 'h3 a').get_attribute('href')
-#         img_url: str = card.find_element(By.CSS_SELECTOR, 'img').get_attribute('src')
-#         price: str = card.find_element(By.CSS_SELECTOR, '.price_color').text
-#
-#         # Рейтинг лежит в p.star-rating (Классы One Two Three Four Five)
-#         rating_element: WebElement = card.find_element(By.CSS_SELECTOR, 'p.star-rating')
-#         # Достаем классы. Последний - это рейтинг
-#         rating: str = rating_element.get_attribute('class').split(' ')[-1]
-#
-#         result.append({
-#             'title': rf"{title}",
-#             'url': rf"{url}",
-#             'img_url': rf"{img_url}",
-#             'price': rf"{price}",
-#             'rating': rf"{rating}"
-#         })
-#
-#     pprint(result)
-#     return result
-
-
 # Получаем все страницы
-def get_all_pages():
+def get_all_pages_content():
+    input('Нажмите кнопку для продолжения')
 
     # Переходим на страницу
     get_page(URL_INIT, driver)
@@ -114,7 +117,6 @@ def get_all_pages():
         page_url: str = f'http://books.toscrape.com/catalogue/page-{page_number}.html'
         # Переходим на страницу
         get_page(page_url, driver)
-        # Проверяем статус код
         # Получаем все карточки товаров на странице
         product_pods: list[WebElement] = get_all_cards(driver)
         # Перебираем все карточки товаров
@@ -123,27 +125,20 @@ def get_all_pages():
             product_pod_data: Dict[str, str] = get_data_from_card(product_pod)
             # Добавляем данные в список
             data.append(product_pod_data)
-            print(f'Содержимое страницы № {page_number}:')
-            pprint(data)
-            print('----------------------------------------------')
+
+    print(f'Теперь содержимое всех страниц c 1 по {(page_count + 1)}: ')
+    pprint(data)
+    print(f'Длина списка словарей: {len(data)}')
 
     # Закрываем драйвер
     driver.close()
 
+    def main():
+        get_page(URL, driver)
+        get_data_from_cards(get_all_cards(driver))
 
-# def main():
-#
-#     get_page(URL, driver)
-#
-#     get_data_from_card(get_all_cards())
-#
-#     get_data_from_cards(get_all_cards())
-#
-#     get_page_count(driver)
-#
-#
-# main()
+        get_all_pages_content()
 
-get_all_pages()
+    main()
 
 
