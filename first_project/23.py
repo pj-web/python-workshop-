@@ -60,13 +60,13 @@ def get_page(url: str, driver: webdriver.Chrome) -> None:
 
 ######
 
-def left_click(element: WebElement) -> None:
-    """
-    Левый клик мышью
-    :param element: WebElement
-    :return: None
-    """
-    element.click()
+    def left_click(element: WebElement) -> None:
+        """
+        Левый клик мышью
+        :param element: WebElement
+        :return: None
+        """
+        element.click()
 
 
 def right_click(element: WebElement, driver: webdriver.Chrome) -> None:
