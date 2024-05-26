@@ -1,10 +1,10 @@
 from time import sleep
 
 from selenium import webdriver  # Импорт webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By  # Инструмент By.
-from selenium.webdriver.remote.webelement import WebElement
 
-WEB_DRIVER_OPTIONS = ['--start-maximized']
+WEB_DRIVER_OPTIONS = ['--start-maximized', '--disable-blink-features=AutomationControlled']
 URL = 'https://v15.skladchik.org'
 
 
@@ -26,47 +26,104 @@ def get_page(url: str, web_drv: webdriver.Chrome) -> None:
     web_drv.get(url)
 
 
-# Левый клик мышью
-def left_click(element: WebElement) -> None:
-    element.click()
-
-
-# /html/body/div[1]/div/div/div/div/form/div/dl[1]/dd/input
-# //*[@id="LoginControl"]
-#
-# /html/body/div[1]/div/div/div/div/form/div/dl[2]/dd/ul/li[3]/input
-# //*[@id="ctrl_password"]
-
-
 driver: webdriver.Chrome = get_driver(WEB_DRIVER_OPTIONS)
 
 
-get_page(URL, driver)
-# Нажимаем кнопку "Вход"
-print(driver.find_element(By.XPATH, '//*[@id="navigation"]/div/nav/div/ul[2]/li[1]/label/a').text)
-driver.find_element(By.XPATH, '//*[@id="navigation"]/div/nav/div/ul[2]/li[1]/label/a').click()
-# После каждого шага джем 3 секунды
-sleep(3)
+def remember_me():
+    # Ищем элемент чекбокса "Запомнить меня"
+    checkbox_remember_me = driver.find_element(By.ID, "ctrl_remember")
 
-input_login = driver.find_element(By.XPATH, '//*[@id="LoginControl"]').send_keys("dr.gonzo.mail71@gmail.com")
-sleep(3)
-# //*[@id="LoginControl"]
-# /html/body/div[1]/div/div/div/div/form/div/dl[1]/dd/input
+    # Проверяем, установлена ли галочка
+    is_checked = checkbox_remember_me.get_attribute("checked")
 
-driver.find_element(By.XPATH, '//*[@id="ctrl_password"]').send_keys("!sc!PJ!41779!")
-# //*[@id="ctrl_password"]
-# /html/body/div[1]/div/div/div/div/form/div/dl[2]/dd/ul/li[3]/input
+    # Если галочка "Запомнить меня" не установлена, кликаем по чекбоксу
+    if not is_checked:
+        checkbox_remember_me.click()
+        print("Чекбокс Запомнить меня не был отмечен. Осуществлен клик.")
+    else:
+        print("Чекбокс Запомнить меня уже отмечен. Действие пропущено.")
 
-driver.find_element(By.XPATH, '//*[@id="login"]/div/dl[3]/dd/input').click()
 
-sleep(5)
-code_2fa = input('Введите код двухфакторной аутентификации: ')
-sleep(5)
-input_code_2fa = driver.find_element(By.XPATH, '//*[@id="ctrl_totp_code"]')
-input_code_2fa.send_keys(code_2fa)
-sleep(5)
-driver.find_element(By.XPATH, '//*[@id="content"]/div/div/form/dl[3]/dd/ul/li/label/input').click()
-driver.find_element(By.XPATH, '//*[@id="content"]/div/div/form/dl[4]/dd/input').click()
+def log_in():
+    # Нажимаем кнопку "Вход"
+    driver.find_element(By.XPATH, '//*[@id="navigation"]/div/nav/div/ul[2]/li[1]/label/a').click()
+    # Вводил логин
+    driver.find_element(By.XPATH, '//*[@id="LoginControl"]').send_keys("placeholder@placeholder.com")
+    # Вводил пароль
+    driver.find_element(By.XPATH, '//*[@id="ctrl_password"]').send_keys("placeholder")
+    # Нажимаем на кнопку "Вход"
+    driver.find_element(By.XPATH, '//*[@id="login"]/div/dl[3]/dd/input').click()
 
-# //*[@id="ctrl_totp_code"]
-# /html/body/div[1]/div[2]/div/div/form/dl[2]/dd/input
+
+def two_factor_authentication():
+    # Проверяем, наличие элемента двухфакторной аутентификации
+    try:
+        element_2fa = driver.find_element(By.ID, 'ctrl_totp_code')
+
+    except NoSuchElementException:
+        print("Двухфакторная аутентификация не требуется.")
+        # В том случае, если исключения не возникло, просим пользователя ввести код
+    else:
+        code_2fa = input('Введите код двухфакторной аутентификации: ')
+        element_2fa.send_keys(code_2fa)
+        # Ищем элемент чекбокса "Добавить это устройство к доверенным на 30 дней"
+        checkbox_trust = driver.find_element(
+            By.XPATH, '//*[@id="content"]/div/div/form/dl[3]/dd/ul/li/label/input')
+
+        # Проверяем, установлена ли галочка "Добавить это устройство к доверенным на 30 дней"
+        is_checked = checkbox_trust.get_attribute("checked")
+
+        # Если галочка "Добавить это устройство к доверенным на 30 дней" не установлена, кликаем по чекбоксу
+        if not is_checked:
+            checkbox_trust.click()
+            print('Чекбокс "Запомнить меня" не был отмечен. Осуществлен клик.')
+        else:
+            print('Чекбокс "Запомнить меня" уже отмечен. Действие пропущено.')
+        # Нажимаем кнопку "Подтвердить"
+        driver.find_element(By.XPATH, '//*[@id="content"]/div/div/form/dl[4]/dd/input').click()
+
+
+def enter_code_pin(code_pin: str = '0000') -> None:
+    # Проверяем, наличие элемента для проверки пин-кода
+    try:
+        check_code_pin = driver.find_element(By.XPATH, '//*[@id="ctrl_pin_code"]')
+
+    except NoSuchElementException:
+        print("Ввод пин-кода не требуется.")
+    else:
+        check_code_pin.send_keys(code_pin)
+        # Ищем элемент чекбокса "Добавить это устройство к доверенным на 30 дней"
+        checkbox_trust = driver.find_element(
+            By.XPATH, '//*[@id="content"]/div/div/form/dl[3]/dd/ul/li/label/input')
+
+        # Проверяем, установлена ли галочка "Добавить это устройство к доверенным на 30 дней"
+        is_checked = checkbox_trust.get_attribute("checked")
+
+        # Если галочка "Добавить это устройство к доверенным на 30 дней" не установлена, кликаем по чекбоксу
+        if not is_checked:
+            checkbox_trust.click()
+            print('Чекбокс "Запомнить меня" не был отмечен. Осуществлен клик.')
+        else:
+            print('Чекбокс "Запомнить меня" уже отмечен. Действие пропущено.')
+        # Нажимаем кнопку "Подтвердить"
+        driver.find_element(By.XPATH, '//*[@id="content"]/div/div/form/dl[4]/dd/input').click()
+
+
+def main():
+    get_page(URL, driver)
+    sleep(1)
+
+    remember_me()
+    sleep(1)
+
+    log_in()
+    sleep(2)
+
+    two_factor_authentication()
+    sleep(3)
+
+    enter_code_pin()
+    sleep(10)
+
+
+main()
